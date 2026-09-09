@@ -88,7 +88,7 @@ public class TurretController : MonoBehaviour
 
     private void Rotate()
     {
-        if (!_isPlayerInSight) return;
+        if (_isPlayerInSight) return;
 
         _headTransform.Rotate(Vector3.up, _rotateSpeed * Time.deltaTime);
     
@@ -110,6 +110,7 @@ public class TurretController : MonoBehaviour
 
     private void RayShotToPlayer()
     {
+        _isPlayerInSight = false;
         if (!_isPlayerInTrigger) return;
 
 
