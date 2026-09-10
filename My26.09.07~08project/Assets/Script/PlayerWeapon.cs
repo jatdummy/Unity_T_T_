@@ -24,6 +24,9 @@ public class PlayerWeapon : MonoBehaviour
     private bool _hasBullets => _currentMagazine > 0;
     private bool _canFire => _isPressedFire && _isReadyFire && _hasBullets;
 
+    public int CurrentMagazine => _currentMagazine;
+    public int MaxMagazine => _maxMagazine;
+
     private void Awake() => CacheComponents();
     private void Start() => Init();
     
