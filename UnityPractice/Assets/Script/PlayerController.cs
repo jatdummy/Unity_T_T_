@@ -28,11 +28,16 @@ public class PlayerController : MonoBehaviour, Iinteractor
     
     private void Update()
     {
+        if (!GameManager.Instance.IsGameRunning) return;
+
         _movement.Rotate();
         _weapon.Fire();
         _weapon.Reload();
         DetectInteractable();
         TryInteract();
+
+        if (Input.GetKeyDown(KeyCode.P)) GameManager.Instance.Pause();
+        else if (Input.GetKeyDown(KeyCode.O)) GameManager.Instance.Run();
     }
     private void LateUpdate()
     {
