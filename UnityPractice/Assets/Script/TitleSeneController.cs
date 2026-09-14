@@ -10,7 +10,7 @@ public class TitleSeneController : MonoBehaviour
     [SerializeField] private Button _startButton;
 
     private void OnEnable() => BindButtonEvents();
-    private void OnDisable() => BindButtonEvents();
+    private void OnDisable() => UnbindButtonEvents();
 
     private void BindButtonEvents()
     {

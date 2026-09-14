@@ -9,22 +9,32 @@ public class TurretController : MonoBehaviour
     [SerializeField] private float _cooldown;
     [SerializeField] private Transform _headTransform;
     [SerializeField] private Transform _muzzlelPoint;
-    [Header("Bullet")]
     [SerializeField] private BulletController bulletPrefab;
     [SerializeField] private int _bulletDamage;
+    [SerializeField] private int _maxHealth;
     [SerializeField] private float _bulletSpeed;
     [SerializeField] private float _returnDelay;
 
-
+    [Header("Bullet")]
+    private int _currentHealth;
     private float _currentCooldown;
     private Transform _playerTransform;
     private bool _isPlayerInTrigger { get { return _playerTransform != null; } }
     private bool _isPlayerInSight = false;
     private bool _isReadyToFire { get { return _currentCooldown >= _cooldown; } }
     private SphereCollider _sphereCollider;
+    private MonsterUIController _ui;
 
+
+
+    private void Start() => Init();
     private void Awake() => CacheComponents();
 
+    private void Init()
+    {
+        _currentHealth = _maxHealth;
+        _ui.RefreshHealthUI(_currentHealth, _maxHealth);
+    }
     private void OnTriggerEnter(Collider other)
     {
 
@@ -54,6 +64,7 @@ public class TurretController : MonoBehaviour
     private void CacheComponents()
     {
         _sphereCollider = GetComponent<SphereCollider>();
+        _ui = GetComponentInChildren<MonsterUIController>();
     }
 
     private void FIre()
@@ -66,22 +77,21 @@ public class TurretController : MonoBehaviour
             _playerTransform.position.z
             );
 
-        _headTransform.LookAt(_playerTransform.position);
+        _headTransform.LookAt(look);
 
 
         if (!_isReadyToFire) return;
 
         SpawnBullet();
-        Debug.Log("두두두두");
-        
+        Debug.Log("터렛 발사.");
+
         _currentCooldown = 0f;
 
-
     }
-
     private void UpdateCurrentCooldown()
     {
         if (_isReadyToFire) return;
+
         _currentCooldown += Time.deltaTime;
 
     }
@@ -92,7 +102,7 @@ public class TurretController : MonoBehaviour
         if (_isPlayerInSight) return;
 
         _headTransform.Rotate(Vector3.up, _rotateSpeed * Time.deltaTime);
-    
+
     }
 
 
@@ -107,8 +117,8 @@ public class TurretController : MonoBehaviour
 
         // 3. 활성화
         bullet.tr.gameObject.SetActive(true);
-        
-        
+
+
         /* 프리팹, Instantiate 하면서 position, rotation 설정.
         BulletController bullet = Instantiate(
             bulletPrefab,
@@ -118,7 +128,7 @@ public class TurretController : MonoBehaviour
         */
 
         (bullet as BulletController).SetData(_bulletDamage, _bulletSpeed, _returnDelay);
-  
+
     }
 
 
@@ -142,7 +152,7 @@ public class TurretController : MonoBehaviour
 
         Ray ray = new Ray(from, (to - from).normalized);
         RaycastHit hit;
-        
+
         // 1. LayerMask 배운 후 고치기
         // 2. 발사 높이와 감지 높이 다르게 
         // 3. RaycastAll로 배열에 모두 담아 처리.
@@ -155,14 +165,16 @@ public class TurretController : MonoBehaviour
                 _isPlayerInSight = true;
                 Debug.Log("플레이어 찾았다");
             }
+        
         }
+    
     }
 
-    /*
-    private void OnDrawGizmos()
+    private void TakeDamage(int damage)
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawRay(transform.position * 5, transform.forward * 4);
+        _currentHealth -= damage;
+        _ui.RefreshHealthUI(_currentHealth, _maxHealth);
     }
-    */
+
+
 }

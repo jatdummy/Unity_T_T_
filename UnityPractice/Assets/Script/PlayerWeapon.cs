@@ -16,9 +16,11 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField] private int _maxMagazine;
     [SerializeField] private FlameEffect _flameEffect;
     [SerializeField] private FlameEffect _bulletImpactEffectPrefab;
+    
     private int _currentMagazine;
-    private bool _isPressedReload => Input.GetKeyDown(_reloadKey);
     private float _currentCooldown;
+    
+    private bool _isPressedReload => Input.GetKeyDown(_reloadKey);
     private bool _isPressedFire => Input.GetKey(_fireKey);
     private bool _isReadyFire => _currentCooldown >= _cooldown;
     private bool _hasBullets => _currentMagazine > 0;
@@ -34,7 +36,6 @@ public class PlayerWeapon : MonoBehaviour
     {
         UpdateCooldown();
     }
-
  
     public void Fire()
     {
@@ -80,7 +81,6 @@ public class PlayerWeapon : MonoBehaviour
 
         return result;
     }
-
     private void CacheComponents()
     {
         _cameraTransform = Camera.main.transform;
