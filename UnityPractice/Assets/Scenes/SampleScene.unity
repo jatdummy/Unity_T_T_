@@ -420,7 +420,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2748149178302006593, guid: 65a77198271996c4099cb91e63490e72, type: 3}
       propertyPath: _cooldown
-      value: 1.5
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2748149178302006593, guid: 65a77198271996c4099cb91e63490e72, type: 3}
       propertyPath: _bulletPool
@@ -428,11 +428,11 @@ PrefabInstance:
       objectReference: {fileID: 1369263685}
     - target: {fileID: 2748149178302006593, guid: 65a77198271996c4099cb91e63490e72, type: 3}
       propertyPath: _bulletSpeed
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2748149178302006593, guid: 65a77198271996c4099cb91e63490e72, type: 3}
       propertyPath: _returnDelay
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6936592900715997865, guid: 65a77198271996c4099cb91e63490e72, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1279,7 +1279,7 @@ PrefabInstance:
       objectReference: {fileID: 792069570327575502, guid: abc6b365e9adc5147a91bb49f16c1289, type: 3}
     - target: {fileID: 3690972561650231918, guid: d5cec5b39db72cb45b5e1065bb487ebe, type: 3}
       propertyPath: <Size>k__BackingField
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4244345387830267128, guid: d5cec5b39db72cb45b5e1065bb487ebe, type: 3}
       propertyPath: m_Name
