@@ -91,13 +91,19 @@ public class PlayerWeapon : MonoBehaviour
         _currentCooldown = 0f;
         _currentMagazine = _maxMagazine;
     }
-
     public void Reload()
     {
-        if (!_isPressedReload) return;
-        
+        StartCoroutine(ReloadRoutine());
+    }
+    public IEnumerator ReloadRoutine()
+    {
+        _isReloading = true;
+        yield return new WaitForSeconds(_reloadDelay);
+        _isReloading = false;
         _currentMagazine = _maxMagazine;
     }
+    [SerializeField] private float _reloadDelay;
+    private bool _isReloading;
 
     private void UpdateCooldown()
     {

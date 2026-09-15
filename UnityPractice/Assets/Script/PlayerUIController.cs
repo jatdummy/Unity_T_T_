@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class PlayerUIController : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _magazine;
-
     private PlayerWeapon _weapon;
 
     private void Awake() => CacheComponents();

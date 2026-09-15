@@ -15,5 +15,4 @@ public class MonsterUIController : MonoBehaviour
         _text.text = $"{health}/{maxHealth}";
     }
 
-
 }
