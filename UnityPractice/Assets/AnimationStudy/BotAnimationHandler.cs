@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -46,7 +47,7 @@ public class BotAnimationHandler : MonoBehaviour
         _animator.SetFloat(_moveX, movement.x);
         _animator.SetFloat(_moveZ, movement.y);
     }
-
     // private void SetMoveAnim(bool isMove) => _animator.SetBool(_move, isMove);
     // private void SetAttackAnim() => _animator.SetTrigger(_attack);
+
 }

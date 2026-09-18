@@ -395,7 +395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d24af792e012fc946a156e758e3926bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startButton: {fileID: 0}
+  _startButton: {fileID: 2049903547}
 --- !u!4 &231419087
 Transform:
   m_ObjectHideFlags: 0
@@ -800,9 +800,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 231419086}
+      - m_Target: {fileID: 231419085}
         m_TargetAssemblyTypeName: TitleSeneController, Assembly-CSharp
-        m_MethodName: LoadGameScene
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
