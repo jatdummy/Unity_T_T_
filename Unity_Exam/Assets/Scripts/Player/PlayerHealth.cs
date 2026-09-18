@@ -14,6 +14,7 @@ public class PlayerHealth : MonoBehaviour
     private Renderer _renderer;
     private int _health;
     private bool _isInvincible;
+    private Coroutine _blinkRoutine;
 
     private void Awake()
     {
@@ -78,14 +79,21 @@ public class PlayerHealth : MonoBehaviour
         _isInvincible = false;
     }
 
+    // [BUG-08] 원인 : 코루틴이 중지되지 않음 / 수정 : Coroutine 객체를 변수에 캐싱해서 사용
     private void BeginBlink()
     {
-        StartCoroutine(BlinkRoutine());
+        if (_blinkRoutine != null) return;
+        _blinkRoutine = StartCoroutine(BlinkRoutine());
     }
 
     private void EndBlink()
     {
-        StopCoroutine(BlinkRoutine());
+        if (_blinkRoutine != null)
+        {
+            StopCoroutine(_blinkRoutine);
+            _blinkRoutine = null;
+        }
+
         _renderer.enabled = true;
     }
 
@@ -96,7 +104,6 @@ public class PlayerHealth : MonoBehaviour
         {
             _renderer.enabled = !_renderer.enabled;
             yield return _waitBlink;
-            // _waitBlink 무적시간동안..?
         }
     }
 
